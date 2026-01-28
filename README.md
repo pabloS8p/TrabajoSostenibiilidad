@@ -56,10 +56,13 @@ Carpeta: [`Socket_Dragons_TCP_VPM/`](./Socket_Dragons_TCP_VPM)
 
 ### Evidencias (capturas)
 
-Pegado de imágenes (ejemplo):
-- `![Servidor TCP funcionando](./imagenes/imagen.png)`
+**Servidor TCP (eco a mayúsculas):**
 
-> Sugerencia: crea una carpeta `imagenes/` en la raíz del repo para guardar las capturas.
+![Servidor TCP Eco](./imagenes/SocketServerPruebaTCPEco.png)
+
+**Cliente TCP (eco a mayúsculas):**
+
+![Cliente TCP Eco](./imagenes/SocketClientePruebaTCPEco.png)
 
 ### Clientes de debug / QA (para qué sirven)
 
@@ -107,16 +110,13 @@ Carpeta: [`Socket_Dragons_Oraculo_VPM/`](./Socket_Dragons_Oraculo_VPM)
 
 ### Evidencias (capturas)
 
-Añadir aquí capturas para demostrar que funciona.
+**Servidor TCP (Oráculo con objetos):**
 
-Ejemplos de capturas recomendadas:
-- Servidor "Oráculo" arrancado.
-- Cliente enviando un número.
-- Respuesta con cuadrado y cubo.
-- Dos clientes: uno en cola y otro atendido.
+![Servidor TCP Oráculo](./imagenes/SocketServerPruebaTCPOraculo.png)
 
-Pegado de imágenes (ejemplo):
-- `![Oráculo funcionando](./imagenes/oraculo_respuesta.png)`
+**Cliente TCP (Oráculo con objetos):**
+
+![Cliente TCP Oráculo](./imagenes/SocketClientePruebaTCPOraculo.png)
 
 ### Clientes de debug / QA (para qué sirven)
 
