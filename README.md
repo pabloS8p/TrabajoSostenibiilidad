@@ -56,16 +56,8 @@ Carpeta: [`Socket_Dragons_TCP_VPM/`](./Socket_Dragons_TCP_VPM)
 
 ### Evidencias (capturas)
 
-Añadir aquí capturas para demostrar que funciona.
-
-Ejemplos de capturas recomendadas:
-- Servidor arrancado y esperando.
-- Dos clientes conectando: uno en cola y otro atendido.
-- Respuesta en mayúsculas.
-- Expulsión por inactividad (AFK).
-
 Pegado de imágenes (ejemplo):
-- `![Servidor TCP funcionando](./imagenes/tcp_servidor.png)`
+- `![Servidor TCP funcionando](./imagenes/imagen.png)`
 
 > Sugerencia: crea una carpeta `imagenes/` en la raíz del repo para guardar las capturas.
 
