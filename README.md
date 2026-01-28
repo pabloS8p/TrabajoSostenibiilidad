@@ -4,9 +4,9 @@ Repositorio de prácticas de **PSP (Programación de Servicios y Procesos)**.
 
 ## Integrantes del grupo
 
-- Pablo
-- Miguel Ángel Varo
-- Manuel Cañas
+- Pablo: Coder Principal, Arquitecto/a de Red, Cazador de Bugs.
+- Miguel Ángel Varo: Coder Principal, Arquitecto/a de Red.
+- Manuel Cañas: Cronista, Coder Principal.
 
 ---
 
@@ -51,10 +51,10 @@ Carpeta: [`Socket_Dragons_TCP_VPM/`](./Socket_Dragons_TCP_VPM)
 - `SocketServer.java` → servidor con cola/turnos.
 - `SocketCliente.java` → cliente por consola.
 - `SocketCliente2.java` → segundo cliente.
-- `SocketClienteDemoQA.java` → demo segura (pocos clientes) para ver cola/turnos.
-- `SocketClienteQA_CargaControlada.java` → prueba con carga controlada (usar con cabeza).
+- `SocketClienteDemoQA.java` → demo para ver cola/turnos.
+- `SocketClienteQA_CargaControlada.java` → demo "QA" con comportamientos aleatorios (desconexiones, vacío, lento).
 
-### Evidencias (capturas)
+### Evidencias
 
 **Servidor TCP (eco a mayúsculas):**
 
@@ -64,26 +64,23 @@ Carpeta: [`Socket_Dragons_TCP_VPM/`](./Socket_Dragons_TCP_VPM)
 
 ![Cliente TCP Eco](./imagenes/SocketClientePruebaTCPEco.png)
 
-### Clientes de debug / QA (para qué sirven)
+### Clientes de debug
 
 En este proyecto hay clientes "extra" pensados para **demostrar** y **comprobar** que la cola y los timeouts funcionan.
 
 - `SocketClienteDemoQA.java`
-  - Para qué sirve: demo rápida en clase.
   - Qué hace:
-    - Lanza pocos clientes (por defecto) casi a la vez.
-    - Te enseña en consola quién entra en cola y quién recibe el turno.
-    - Puede simular 1 cliente "AFK" (no envía mensaje cuando le toca) para ver la expulsión.
-  - Cuándo usarlo: cuando quieras una prueba visual, fácil y no pesada.
+    - Lanza varios clientes casi a la vez.
+    - Muestra por consola los mensajes del servidor (cola → turno).
+    - Si `Afk=true`, el último cliente no envía y se ve la expulsión por inactividad.
 
 - `SocketClienteQA_CargaControlada.java`
-  - Para qué sirve: prueba más larga pero controlada.
-  - Qué hace:
-    - Lanza muchos intentos de cliente (configurable) con un paralelismo limitado.
-    - Cada cliente espera su turno, envía un mensaje y comprueba que vuelve en mayúsculas.
-    - Saca por consola si fue OK/FAIL.
-  - Cuándo usarlo: cuando quieras comprobar estabilidad durante más tiempo.
-  - Importante: si subes demasiado el número de clientes, ya no es una demo, sería un estrés (úsalo con cabeza).
+  - Qué hace (elige aleatoriamente por cliente):
+    - Conectar y desconectar inmediatamente.
+    - Desconectar mientras está en cola.
+    - Enviar mensaje vacío (el servidor lo marca como inválido).
+    - Enviar mensaje normal y comprobar el eco a mayúsculas.
+    - Esperar demasiado antes de enviar para provocar expulsión por inactividad (AFK) en el servidor.
 
 ---
 
@@ -107,6 +104,8 @@ Carpeta: [`Socket_Dragons_Oraculo_VPM/`](./Socket_Dragons_Oraculo_VPM)
 - `SocketServer.java` → servidor "Oráculo".
 - `SocketCliente.java` → cliente 1 por consola.
 - `SocketCliente2.java` → cliente 2 por consola.
+- `SocketClienteDemoQA_Oraculo.java` → demo de cola/turnos + opción de simular AFK.
+- `SocketClienteQA_CargaControlada_Oraculo.java` → demo "QA" con comportamientos aleatorios (desconexiones, inválidos, lento).
 
 ### Evidencias (capturas)
 
@@ -118,12 +117,24 @@ Carpeta: [`Socket_Dragons_Oraculo_VPM/`](./Socket_Dragons_Oraculo_VPM)
 
 ![Cliente TCP Oráculo](./imagenes/SocketClientePruebaTCPOraculo.png)
 
-### Clientes de debug / QA (para qué sirven)
+### Clientes de debug
 
-En este proyecto no hay un cliente de carga especial como en el TCP.
+- `SocketClienteDemoQA_Oraculo.java`
+  - Qué hace:
+    - Lanza varios clientes casi a la vez.
+    - Muestra mensajes del servidor (cola → turno).
+    - Si `demoAfk=true`, el último cliente no envía el objeto tras "Tu turno" y se ve la expulsión por inactividad.
 
-Los clientes que hay (`SocketCliente` y `SocketCliente2`) sirven para:
-- Probar el servidor con 1 cliente.
-- Probar la cola/turno con 2 clientes a la vez.
+- `SocketClienteQA_CargaControlada_Oraculo.java`
+  - Qué hace (elige aleatoriamente por cliente):
+    - Conectar y desconectar inmediatamente.
+    - Desconectar mientras está en cola.
+    - Enviar un `Numeros` válido y validar cuadrado/cubo.
+    - Enviar un objeto inválido (por ejemplo `String`) y ver la respuesta del servidor.
+    - Esperar demasiado antes de enviar para provocar expulsión por inactividad (AFK) en el servidor.
 
-Si quieres, se puede añadir un `SocketClienteDemoQA_Oraculo` parecido al del TCP (pero con objetos) para demo en clase.
+---
+
+## Presentación
+
+- Enlace: 
