@@ -10,13 +10,6 @@ Repositorio de prácticas de **PSP (Programación de Servicios y Procesos)**.
 
 ---
 
-## Requisitos
-
-- **Java 17+** (o la versión que uses en clase)
-- Ejecutar en local (host: `localhost`)
-
----
-
 ## Estructura del repositorio
 
 - [`Socket_Dragons_TCP_VPM/`](./Socket_Dragons_TCP_VPM) → Mensajes UTF (`DataInputStream/DataOutputStream`)
@@ -61,26 +54,41 @@ Carpeta: [`Socket_Dragons_TCP_VPM/`](./Socket_Dragons_TCP_VPM)
 - `SocketClienteDemoQA.java` → demo segura (pocos clientes) para ver cola/turnos.
 - `SocketClienteQA_CargaControlada.java` → prueba con carga controlada (usar con cabeza).
 
-### Cómo ejecutar (desde terminal)
+### Evidencias (capturas)
 
-> Si usas IntelliJ/Eclipse, también puedes ejecutar con el botón Run.
+Añadir aquí capturas para demostrar que funciona.
 
-Desde la raíz del repo:
+Ejemplos de capturas recomendadas:
+- Servidor arrancado y esperando.
+- Dos clientes conectando: uno en cola y otro atendido.
+- Respuesta en mayúsculas.
+- Expulsión por inactividad (AFK).
 
-1) Compilar:
-- Windows (PowerShell / CMD):
-  - `cd Socket_Dragons_TCP_VPM\src`
-  - `javac *.java`
+Pegado de imágenes (ejemplo):
+- `![Servidor TCP funcionando](./imagenes/tcp_servidor.png)`
 
-2) Ejecutar servidor:
-- `java SocketServer`
+> Sugerencia: crea una carpeta `imagenes/` en la raíz del repo para guardar las capturas.
 
-3) Ejecutar cliente(s) en otra terminal:
-- `java SocketCliente`
-- `java SocketCliente2`
-- (Opcional) `java SocketClienteDemoQA`
+### Clientes de debug / QA (para qué sirven)
 
-**Puerto por defecto:** `6000`.
+En este proyecto hay clientes "extra" pensados para **demostrar** y **comprobar** que la cola y los timeouts funcionan.
+
+- `SocketClienteDemoQA.java`
+  - Para qué sirve: demo rápida en clase.
+  - Qué hace:
+    - Lanza pocos clientes (por defecto) casi a la vez.
+    - Te enseña en consola quién entra en cola y quién recibe el turno.
+    - Puede simular 1 cliente "AFK" (no envía mensaje cuando le toca) para ver la expulsión.
+  - Cuándo usarlo: cuando quieras una prueba visual, fácil y no pesada.
+
+- `SocketClienteQA_CargaControlada.java`
+  - Para qué sirve: prueba más larga pero controlada.
+  - Qué hace:
+    - Lanza muchos intentos de cliente (configurable) con un paralelismo limitado.
+    - Cada cliente espera su turno, envía un mensaje y comprueba que vuelve en mayúsculas.
+    - Saca por consola si fue OK/FAIL.
+  - Cuándo usarlo: cuando quieras comprobar estabilidad durante más tiempo.
+  - Importante: si subes demasiado el número de clientes, ya no es una demo, sería un estrés (úsalo con cabeza).
 
 ---
 
@@ -105,28 +113,25 @@ Carpeta: [`Socket_Dragons_Oraculo_VPM/`](./Socket_Dragons_Oraculo_VPM)
 - `SocketCliente.java` → cliente 1 por consola.
 - `SocketCliente2.java` → cliente 2 por consola.
 
-### Cómo ejecutar (desde terminal)
+### Evidencias (capturas)
 
-Desde la raíz del repo:
+Añadir aquí capturas para demostrar que funciona.
 
-1) Compilar:
-- Windows (PowerShell / CMD):
-  - `cd Socket_Dragons_Oraculo_VPM\src`
-  - `javac *.java`
+Ejemplos de capturas recomendadas:
+- Servidor "Oráculo" arrancado.
+- Cliente enviando un número.
+- Respuesta con cuadrado y cubo.
+- Dos clientes: uno en cola y otro atendido.
 
-2) Ejecutar servidor:
-- `java SocketServer`
+Pegado de imágenes (ejemplo):
+- `![Oráculo funcionando](./imagenes/oraculo_respuesta.png)`
 
-3) Ejecutar cliente(s) en otra terminal:
-- `java SocketCliente`
-- `java SocketCliente2`
+### Clientes de debug / QA (para qué sirven)
 
-**Puerto por defecto:** `6000`.
+En este proyecto no hay un cliente de carga especial como en el TCP.
 
----
+Los clientes que hay (`SocketCliente` y `SocketCliente2`) sirven para:
+- Probar el servidor con 1 cliente.
+- Probar la cola/turno con 2 clientes a la vez.
 
-## Notas / problemas típicos
-
-- Si el puerto `6000` está ocupado, cierra el proceso que lo use o cambia el puerto en servidor y clientes.
-- En el proyecto de objetos, se crea primero `ObjectOutputStream` y luego `ObjectInputStream` para evitar bloqueos.
-- Los timeouts están puestos para que en clase se vea bien la cola/turno y la expulsión por inactividad.
+Si quieres, se puede añadir un `SocketClienteDemoQA_Oraculo` parecido al del TCP (pero con objetos) para demo en clase.
